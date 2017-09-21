@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: f91ade6c2633f8e40a75295e9a3aa244
+timeCreated: 1506007922
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Adobe Devanagari
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 696557a0852dcf44c88db9a96ec34fab, type: 3}
+  - {fileID: 12800000, guid: a6a0c8e73fbd51943bce97eae51d01ca, type: 3}
+  - {fileID: 12800000, guid: 1f2edfacc4730ad4195ea4facd1d939e, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
