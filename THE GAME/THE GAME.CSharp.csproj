@@ -90,6 +90,7 @@
     <Compile Include="Assets\script\fontsize\namesize.cs" />
     <Compile Include="Assets\script\fontsize\talkframesize.cs" />
     <Compile Include="Assets\script\movescene.cs" />
+    <Compile Include="Assets\script\playername.cs" />
     <Compile Include="Assets\script\talkframe.cs" />
   </ItemGroup>
   <ItemGroup>

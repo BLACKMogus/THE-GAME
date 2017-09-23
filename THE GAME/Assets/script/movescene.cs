@@ -5,8 +5,8 @@ public class movescene : MonoBehaviour {
 
     public GameObject gate;
     public GameObject classroom;
-    public Transform path;
-    public Transform coffee;
+    //public Transform path;
+    //public Transform coffee;
     public GameObject lefttalk;
 
     void Start () {
@@ -15,7 +15,7 @@ public class movescene : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+       
 	}
 
     public void ButtonNextScene()
@@ -23,11 +23,27 @@ public class movescene : MonoBehaviour {
        
         if(talkframe.go==2)
         {
-        //    gate.DOLocalMoveX();
-            lefttalk.SetActive(false);
-            classroom.transform.DOLocalMoveX(0, 3);
-            gate.transform.DOLocalMove(new Vector3(-Screen.width,0,0),3);
-            talkframe.stay = 2;
+            MovePicture(gate, classroom,2);
         }
+    }
+
+    void MovePicture(GameObject nowobj,GameObject nextobj,int n)//现在场景，要去的场景，目的地状态
+    {
+        lefttalk.SetActive(false);
+        nextobj.transform.DOLocalMoveX(0, 3);
+        nowobj.transform.DOLocalMove(new Vector3(-Screen.width, 0, 0), 3);
+        talkframe.stay = n;//状态为目的地
+        talkframe.go = 0;//要到达的场景归零
+        talkframe.i = 1;//句子排序归零
+        talkframe.isdelay = false;//点击关闭
+        talkframe.stopcoroutine = true;//关闭主程序协程
+        StartCoroutine("delay3s");
+    }
+    IEnumerator delay3s()
+    {
+       
+        yield return new WaitForSeconds(3f);
+        talkframe.isdelay = true;
+        talkframe.stopcoroutine = false;
     }
 }

@@ -6,8 +6,11 @@ public class talkframe : MonoBehaviour {
     public static int i = 1;
     public GameObject mask;//对话框
     public static int q = 0;
-    bool isdelay = true;
+    public static bool isdelay;
+    public static bool stopcoroutine;
+    public static bool havenext;
     public GameObject nextscene;//去下一个场景的按钮
+    Tween a;
     //public enum state
     //{
     //    gate,
@@ -42,7 +45,8 @@ public class talkframe : MonoBehaviour {
     public static string[] output;
 
     void Start() {
-        //  map = state.gate;//初始处于校门的场景
+        havenext = false;
+        isdelay = true;
         stay = 1;
         go = 0;
         lefttalkframe.SetActive(false);
@@ -50,7 +54,10 @@ public class talkframe : MonoBehaviour {
   
 
     void Update() {
-      
+      if(stopcoroutine==true)
+        {
+            StopCoroutine("delay");
+        }
         outputtalk();          //输出对话内容
        if(go==0)               //控制前往下一个地图的按钮
         {
@@ -71,44 +78,51 @@ public class talkframe : MonoBehaviour {
     public void ButtonShowTheWord()//按下输入框按钮后输出第一行
     {
      
-        text.DOText(output[i], q * 0.3f, true, ScrambleMode.Custom, " ");//字体出现时间为字数乘以0.3s
+        text.DOText(output[i], 1f, true, ScrambleMode.Custom, " ");//字体出现时间为字数乘以0.3s
         i++;
         isdelay = false;
         StartCoroutine("delay");
     }
 
-    //public void ButtonGoNextScene()
-    //{
-    //    if(go==2)
-    //    {
 
-    //    }
-    //}
+    void typeword()
+    {
+        if (output[i].Contains("over"))//如果数组over了则使输入框出现
+        {
+            mask.SetActive(true);
+        }
+        else if(output[i].Contains("next"))
+        {
+            havenext=true;
+        }
+        else
+        {
+            q = output[i].Length;      //q为当前这句话的字数
+            Debug.Log(q);
+            namee.text = output[0];
+            text.DOText(output[i],  1f, true, ScrambleMode.Custom, " ");//字体出现时间为字数乘以0.3s
+            isdelay = false;
+            i++;
+            StartCoroutine("delay");
+        }
+    }
+
 
     void outputtalk()//输出对话内容
     {
       if (isdelay == true)//延迟点击两秒
       { if (Input.GetMouseButtonDown(0))
          {    if (lefttalkframe.activeSelf == true)
-                  {if    (output[i].Contains("over"))//如果数组over了则使输入框出现
-                           {
-                            mask.SetActive(true);
-                           }//对话框消失后输入框出现
-                    else   {
-                           q = output.Length;      //q为当前这句话的字数
-                           namee.text = output[0];
-                           text.DOText(output[i], q * 0.3f, true, ScrambleMode.Custom, " ");//字体出现时间为字数乘以0.3s
-                           text.color = Color.red;
-                           isdelay = false;
-                           i++;
-                           StartCoroutine("delay");
-                           }
+                  {
+                    typeword();
                   }
             else  {
-                  lefttalkframe.SetActive(true);
-                  }
+                    lefttalkframe.SetActive(true);
+                    typeword();
+                }
          }
       }
+     
     }
  
     IEnumerator  delay()
