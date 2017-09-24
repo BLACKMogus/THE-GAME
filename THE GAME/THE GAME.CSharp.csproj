@@ -85,8 +85,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Demigiant\DOTweenPro\DOTweenAnimation.cs" />
+    <Compile Include="Assets\script\day1canteen.cs" />
     <Compile Include="Assets\script\day1class.cs" />
     <Compile Include="Assets\script\day1gate.cs" />
+    <Compile Include="Assets\script\day1sport.cs" />
     <Compile Include="Assets\script\fontsize\namesize.cs" />
     <Compile Include="Assets\script\fontsize\talkframesize.cs" />
     <Compile Include="Assets\script\movescene.cs" />

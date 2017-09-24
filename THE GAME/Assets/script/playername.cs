@@ -5,8 +5,9 @@ using DG.Tweening;
 using UnityEngine.SceneManagement;
 public class playername : MonoBehaviour {
 
-    private static playername instance=new playername();//正式改掉
+    private static playername instance=new playername();//正式改掉 去掉等于后面
     Text playernamee;//单例里的玩家名字
+    int times=0;
     string pname;
     public Text inputcontent;//输入的内容
     public Text framecontent;//对话框显示内容
@@ -23,8 +24,7 @@ public class playername : MonoBehaviour {
     void Start()
     {
       
-        isdelay = false;
-      
+        isdelay = false;  
         continu = true;
     }
 
@@ -33,7 +33,14 @@ public class playername : MonoBehaviour {
         instance.pname = "黑莫格斯"; //正式删除
         return instance.pname;
     }
-
+    public static int gettimes()
+    {
+           return instance.times;
+    }
+    public static void addone()
+    {
+        instance.times += 1;
+    }
 
     int q;
     int i = 0;

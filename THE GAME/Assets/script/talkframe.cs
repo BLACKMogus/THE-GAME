@@ -9,6 +9,7 @@ public class talkframe : MonoBehaviour {
     public static bool isdelay;
     public static bool stopcoroutine;
     public static bool havenext;
+    public static bool gonext;
     public GameObject nextscene;//去下一个场景的按钮
     Tween a;
     //public enum state
@@ -23,18 +24,18 @@ public class talkframe : MonoBehaviour {
     /*
      *stay=1在  门口 
      *stay=2在  课室
-     *stay=3在  小道
+     *stay=3在  食堂
      *stay=4在  咖啡屋
-     * 
+     *stay=5在  篮球场
      * 
      */
     public static int go;
     /*
-   * go=2去课室
-   * go=3去小道
-   * go=4去咖啡屋
-   * 
-   * 
+   * go=2   校门→课室
+   * go=3   课室→食堂
+   * go=4   课室→(食堂)路过咖啡屋
+   * go=5   食堂→篮球场
+   * go=6   咖啡屋→篮球场
    */
 
     public Text text;
@@ -45,7 +46,8 @@ public class talkframe : MonoBehaviour {
     public static string[] output;
 
     void Start() {
-        havenext = false;
+        havenext = true;
+        gonext = false;
         isdelay = true;
         stay = 1;
         go = 0;
@@ -59,7 +61,7 @@ public class talkframe : MonoBehaviour {
             StopCoroutine("delay");
         }
         outputtalk();          //输出对话内容
-       if(go==0)               //控制前往下一个地图的按钮
+       if(gonext==false)               //控制前往下一个地图的按钮
         {
             nextscene.SetActive(false);
         }
@@ -80,7 +82,7 @@ public class talkframe : MonoBehaviour {
      
         text.DOText(output[i], 1f, true, ScrambleMode.Custom, " ");//字体出现时间为字数乘以0.3s
         i++;
-        isdelay = false;
+       // isdelay = false;   正式解除
         StartCoroutine("delay");
     }
 
@@ -98,10 +100,10 @@ public class talkframe : MonoBehaviour {
         else
         {
             q = output[i].Length;      //q为当前这句话的字数
-            Debug.Log(q);
+          
             namee.text = output[0];
             text.DOText(output[i],  1f, true, ScrambleMode.Custom, " ");//字体出现时间为字数乘以0.3s
-            isdelay = false;
+           // isdelay = false;
             i++;
             StartCoroutine("delay");
         }
