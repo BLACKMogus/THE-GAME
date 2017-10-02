@@ -27,7 +27,14 @@ public class talkframe : MonoBehaviour {
      *stay=3在  食堂
      *stay=4在  咖啡屋
      *stay=5在  篮球场
-     * 
+    * stay=6在 宿舍
+    * stay=7在  第二次的食堂
+    * stay=8在 足球场
+    * stay=9在 书店
+    * stay=10在钥匙妹
+    * 
+    * 
+    * stay=20 晚修
      */
     public static int go;
     /*
@@ -35,7 +42,16 @@ public class talkframe : MonoBehaviour {
    * go=3   课室→食堂
    * go=4   课室→(食堂)路过咖啡屋
    * go=5   食堂→篮球场
-   * go=6   咖啡屋→篮球场
+   * go=6   篮球场→宿舍
+   * go=7   篮球场→食堂
+   * go=8   篮球场→足球场
+   * go=9   篮球场→叮当达
+   * go=10  宿舍→晚修
+   * go=11  食堂→晚修
+   * go=12  足球场→晚修
+   * go=13  叮当达→晚修
+   * go=20   咖啡屋→篮球场
+   * 
    */
 
     public Text text;
@@ -70,6 +86,7 @@ public class talkframe : MonoBehaviour {
             nextscene.SetActive(true);
         }
     }
+   
 
     public void ButtonDispearArrow()//输入框按钮按下后消失
     {

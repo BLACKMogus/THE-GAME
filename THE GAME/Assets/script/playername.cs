@@ -7,7 +7,7 @@ public class playername : MonoBehaviour {
 
     private static playername instance=new playername();//正式改掉 去掉等于后面
     Text playernamee;//单例里的玩家名字
-    int times=0;
+    int times=0;//过的天数
     string pname;
     public Text inputcontent;//输入的内容
     public Text framecontent;//对话框显示内容
